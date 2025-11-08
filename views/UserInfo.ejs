@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - ShopName</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/UserStyle.css">
+</head>
+<body>
+    <!-- Navigation -->
+ <%- include("Navbar") %>
+
+    <!-- Page Header -->
+      <%- include("Header") %>
+
+    <!-- Main Content -->
+    <div class="container mb-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="profile-sidebar">
+                    <div class="profile-header">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                             alt="User Avatar" class="profile-avatar">
+                        <h4 class="mb-1">John Smith</h4>
+                        <p class="text-muted">Member since 2020</p>
+                        <button class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-edit me-1"></i> Edit Profile
+                        </button>
+                    </div>
+
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" data-tab="dashboard">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-tab="profile">
+                                <i class="fas fa-user"></i> Personal Information
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-tab="orders">
+                                <i class="fas fa-shopping-bag"></i> Order History
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-tab="addresses">
+                                <i class="fas fa-map-marker-alt"></i> Address Book
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-tab="wishlist">
+                                <i class="fas fa-heart"></i> Wishlist
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-tab="settings">
+                                <i class="fas fa-cog"></i> Account Settings
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <a class="nav-link text-danger" href="#">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="col-lg-8">
+                <!-- Dashboard Tab -->
+                <div class="profile-content tab-pane active" id="dashboard">
+                    <h2 class="section-title">Dashboard</h2>
+                    <p class="mb-4">Welcome back, John! Here's an overview of your account activity.</p>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="stats-card">
+                                <div class="stats-number">12</div>
+                                <p>Total Orders</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stats-card">
+                                <div class="stats-number">3</div>
+                                <p>Pending Orders</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stats-card">
+                                <div class="stats-number">$1,248.75</div>
+                                <p>Total Spent</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <h5 class="mb-3">Recent Activity</h5>
+                                <div class="mb-3">
+                                    <p class="mb-1"><strong>Order #32567 shipped</strong></p>
+                                    <p class="text-muted small mb-0">Your order has been shipped and will arrive by Oct 15</p>
+                                    <p class="text-muted small">2 days ago</p>
+                                </div>
+                                <div class="mb-3">
+                                    <p class="mb-1"><strong>Order #32561 delivered</strong></p>
+                                    <p class="text-muted small mb-0">Your order was successfully delivered</p>
+                                    <p class="text-muted small">1 week ago</p>
+                                </div>
+                                <div>
+                                    <p class="mb-1"><strong>Profile updated</strong></p>
+                                    <p class="text-muted small mb-0">You updated your contact information</p>
+                                    <p class="text-muted small">2 weeks ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <h5 class="mb-3">Rewards & Points</h5>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span>Loyalty Points</span>
+                                    <strong>1,250 points</strong>
+                                </div>
+                                <div class="progress mb-3" style="height: 10px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="small text-muted">Earn 350 more points to reach Gold status</p>
+                                <button class="btn btn-primary btn-sm w-100">View Rewards</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="mt-4 mb-3">Recent Orders</h5>
+                    <div class="order-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h6 class="mb-1">Order #32567</h6>
+                                <p class="text-muted small mb-0">Placed on October 5, 2023</p>
+                            </div>
+                            <span class="order-status status-shipped">Shipped</span>
+                        </div>
+                        <div class="order-products d-flex mb-3">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">$279.98</span>
+                            <div>
+                                <button class="btn btn-outline-primary btn-sm me-2">View Details</button>
+                                <button class="btn btn-primary btn-sm">Track Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Tab -->
+                <div class="profile-content tab-pane" id="profile">
+                    <h2 class="section-title">Personal Information</h2>
+                    <p class="mb-4">Manage your personal details and contact information.</p>
+
+                    <div class="info-card">
+                        <h5 class="mb-4">Basic Information</h5>
+                        <div class="info-item">
+                            <span class="info-label">Full Name:</span>
+                            <span>John Smith</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email:</span>
+                            <span>john.smith@example.com</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Phone:</span>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Date of Birth:</span>
+                            <span>January 15, 1985</span>
+                        </div>
+                        <button class="btn btn-primary mt-2">Edit Information</button>
+                    </div>
+
+                    <div class="info-card">
+                        <h5 class="mb-4">Login & Security</h5>
+                        <div class="info-item">
+                            <span class="info-label">Password:</span>
+                            <span>••••••••</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Two-Factor Auth:</span>
+                            <span>Enabled</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Last Login:</span>
+                            <span>October 8, 2023 at 2:45 PM</span>
+                        </div>
+                        <button class="btn btn-outline-primary me-2 mt-2">Change Password</button>
+                        <button class="btn btn-outline-primary mt-2">Security Settings</button>
+                    </div>
+                </div>
+
+                <!-- Orders Tab -->
+                <div class="profile-content tab-pane" id="orders">
+                    <h2 class="section-title">Order History</h2>
+                    <p class="mb-4">View your past orders and their current status.</p>
+
+                    <div class="order-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h6 class="mb-1">Order #32567</h6>
+                                <p class="text-muted small mb-0">Placed on October 5, 2023</p>
+                            </div>
+                            <span class="order-status status-shipped">Shipped</span>
+                        </div>
+                        <div class="order-products d-flex mb-3">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">$279.98</span>
+                            <div>
+                                <button class="btn btn-outline-primary btn-sm me-2">View Details</button>
+                                <button class="btn btn-primary btn-sm">Track Order</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h6 class="mb-1">Order #32561</h6>
+                                <p class="text-muted small mb-0">Placed on September 28, 2023</p>
+                            </div>
+                            <span class="order-status status-delivered">Delivered</span>
+                        </div>
+                        <div class="order-products d-flex mb-3">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">$79.99</span>
+                            <div>
+                                <button class="btn btn-outline-primary btn-sm me-2">View Details</button>
+                                <button class="btn btn-outline-primary btn-sm">Reorder</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h6 class="mb-1">Order #32554</h6>
+                                <p class="text-muted small mb-0">Placed on September 15, 2023</p>
+                            </div>
+                            <span class="order-status status-delivered">Delivered</span>
+                        </div>
+                        <div class="order-products d-flex mb-3">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product">
+                            <img src="https://images.unsplash.com/photo-1504274066651-8d31a536b11a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">$139.98</span>
+                            <div>
+                                <button class="btn btn-outline-primary btn-sm me-2">View Details</button>
+                                <button class="btn btn-outline-primary btn-sm">Reorder</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-outline-primary">Load More Orders</button>
+                    </div>
+                </div>
+
+                <!-- Addresses Tab -->
+                <div class="profile-content tab-pane" id="addresses">
+                    <h2 class="section-title">Address Book</h2>
+                    <p class="mb-4">Manage your shipping addresses for faster checkout.</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="address-card address-default">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h6 class="mb-0">Home Address</h6>
+                                    <span class="badge bg-primary">Default</span>
+                                </div>
+                                <p class="mb-2">
+                                    John Smith<br>
+                                    123 Main Street<br>
+                                    Apt 4B<br>
+                                    New York, NY 10001<br>
+                                    United States
+                                </p>
+                                <p class="mb-3">
+                                    <strong>Phone:</strong> +1 (555) 123-4567
+                                </p>
+                                <div>
+                                    <button class="btn btn-outline-primary btn-sm me-2">Edit</button>
+                                    <button class="btn btn-outline-danger btn-sm">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="address-card">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h6 class="mb-0">Work Address</h6>
+                                </div>
+                                <p class="mb-2">
+                                    John Smith<br>
+                                    456 Business Ave<br>
+                                    Floor 10<br>
+                                    New York, NY 10005<br>
+                                    United States
+                                </p>
+                                <p class="mb-3">
+                                    <strong>Phone:</strong> +1 (555) 987-6543
+                                </p>
+                                <div>
+                                    <button class="btn btn-outline-primary btn-sm me-2">Edit</button>
+                                    <button class="btn btn-outline-primary btn-sm me-2">Set as Default</button>
+                                    <button class="btn btn-outline-danger btn-sm">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i> Add New Address
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wishlist Tab -->
+                <div class="profile-content tab-pane" id="wishlist">
+                    <h2 class="section-title">Wishlist</h2>
+                    <p class="mb-4">Your saved items for future purchases.</p>
+
+                    <div class="wishlist-item">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">Wireless Headphones</h6>
+                            <p class="text-muted mb-1">High-quality sound with noise cancellation</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">$129.99</span>
+                                <div>
+                                    <button class="btn btn-outline-primary btn-sm me-2">Add to Cart</button>
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wishlist-item">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">Smart Watch</h6>
+                            <p class="text-muted mb-1">Track your fitness and stay connected</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">$149.99</span>
+                                <div>
+                                    <button class="btn btn-outline-primary btn-sm me-2">Add to Cart</button>
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wishlist-item">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">Bluetooth Speaker</h6>
+                            <p class="text-muted mb-1">Portable speaker with amazing sound</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">$79.99</span>
+                                <div>
+                                    <button class="btn btn-outline-primary btn-sm me-2">Add to Cart</button>
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-outline-primary">Continue Shopping</button>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div class="profile-content tab-pane" id="settings">
+                    <h2 class="section-title">Account Settings</h2>
+                    <p class="mb-4">Manage your account preferences and notification settings.</p>
+
+                    <div class="info-card">
+                        <h5 class="mb-4">Communication Preferences</h5>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="emailPromotions" checked>
+                            <label class="form-check-label" for="emailPromotions">
+                                Email me with news and promotions
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="smsNotifications">
+                            <label class="form-check-label" for="smsNotifications">
+                                Send me text message notifications
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="orderUpdates" checked>
+                            <label class="form-check-label" for="orderUpdates">
+                                Notify me about order updates
+                            </label>
+                        </div>
+                        <button class="btn btn-primary mt-2">Save Preferences</button>
+                    </div>
+
+                    <div class="info-card">
+                        <h5 class="mb-4">Privacy Settings</h5>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="dataSharing">
+                            <label class="form-check-label" for="dataSharing">
+                                Allow data sharing with trusted partners
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="personalizedAds" checked>
+                            <label class="form-check-label" for="personalizedAds">
+                                Show personalized ads and recommendations
+                            </label>
+                        </div>
+                        <button class="btn btn-primary mt-2">Save Settings</button>
+                    </div>
+
+                    <div class="info-card">
+                        <h5 class="mb-4">Account Management</h5>
+                        <p class="mb-3">You can deactivate your account if you no longer wish to use our services.</p>
+                        <button class="btn btn-outline-danger">Deactivate Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">ShopName</h5>
+                    <p>Your one-stop shop for all your needs. Quality products at affordable prices.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="products.html" class="text-white text-decoration-none">Products</a></li>
+                        <li><a href="categories.html" class="text-white text-decoration-none">Categories</a></li>
+                        <li><a href="about.html" class="text-white text-decoration-none">About</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5 class="mb-3">Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Shipping Policy</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Returns & Refunds</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">FAQ</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Main St, City, Country</li>
+                        <li><i class="fas fa-phone me-2"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@shopname.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2023 ShopName. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Tab navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-pills .nav-link');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // Remove active class from all links and panes
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    tabPanes.forEach(p => p.classList.remove('active'));
+
+                    // Add active class to clicked link
+                    this.classList.add('active');
+
+                    // Show corresponding tab pane
+                    const tabId = this.getAttribute('data-tab');
+                    const tabPane = document.getElementById(tabId);
+                    if (tabPane) {
+                        tabPane.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - ShopName</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+
+        .page-header {
+            background-color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .product-form-container {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .image-upload-area {
+            border: 2px dashed #dee2e6;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            text-align: center;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .image-upload-area:hover {
+            border-color: var(--primary-color);
+            background-color: #e9ecef;
+        }
+
+        .image-upload-area.dragover {
+            border-color: var(--primary-color);
+            background-color: #e7f1ff;
+        }
+
+        .image-preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .image-preview {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-preview .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: rgba(220, 53, 69, 0.8);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .feature-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .specification-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .specification-row input {
+            flex: 1;
+        }
+
+        .remove-spec-btn {
+            color: #dc3545;
+            background: none;
+            border: none;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        .variant-row {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .required::after {
+            content: " *";
+            color: #dc3545;
+        }
+
+        .preview-sidebar {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .preview-card {
+            border: 1px solid #e9ecef;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-image {
+            height: 200px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+        }
+
+        .preview-body {
+            padding: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .preview-sidebar {
+                margin-top: 2rem;
+                position: static;
+            }
+        }
+
+        .progress {
+            height: 8px;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-store me-2"></i>ShopName
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="electronics.html">Electronics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-outline-primary me-2">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <a href="profile.html" class="btn btn-outline-primary me-2">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="cart.html" class="btn btn-outline-primary position-relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="h2 mb-1">Add New Product</h1>
+                    <p class="text-muted mb-0">Create a new product listing for your store</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-md-end mb-0">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="products.html">Products</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mb-5">
+        <div class="row">
+            <!-- Product Form -->
+            <div class="col-lg-8">
+                <div class="product-form-container">
+                    <form id="productForm">
+                        <!-- Basic Information Section -->
+                        <div class="form-section">
+                            <h3 class="section-title">Basic Information</h3>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="productName" class="form-label required">Product Name</label>
+                                    <input type="text" class="form-control" id="productName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="productSku" class="form-label required">SKU</label>
+                                    <input type="text" class="form-control" id="productSku" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="productDescription" class="form-label required">Product Description</label>
+                                <textarea class="form-control" id="productDescription" rows="4" required></textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="productCategory" class="form-label required">Category</label>
+                                    <select class="form-select" id="productCategory" required>
+                                        <option value="" selected disabled>Select a category</option>
+                                        <option value="electronics">Electronics</option>
+                                        <option value="fashion">Fashion</option>
+                                        <option value="home">Home & Garden</option>
+                                        <option value="sports">Sports</option>
+                                        <option value="beauty">Beauty</option>
+                                        <option value="toys">Toys & Games</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="productSubcategory" class="form-label">Subcategory</label>
+                                    <select class="form-select" id="productSubcategory">
+                                        <option value="" selected>Select a subcategory</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="productBrand" class="form-label">Brand</label>
+                                    <input type="text" class="form-control" id="productBrand">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="productTags" class="form-label">Tags</label>
+                                    <input type="text" class="form-control" id="productTags" placeholder="Separate tags with commas">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pricing & Inventory Section -->
+                        <div class="form-section">
+                            <h3 class="section-title">Pricing & Inventory</h3>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="productPrice" class="form-label required">Price ($)</label>
+                                    <input type="number" class="form-control" id="productPrice" min="0" step="0.01" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="productComparePrice" class="form-label">Compare at Price ($)</label>
+                                    <input type="number" class="form-control" id="productComparePrice" min="0" step="0.01">
+                                    <div class="form-text">Show a "sale" badge when set</div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="productCost" class="form-label">Cost per item ($)</label>
+                                    <input type="number" class="form-control" id="productCost" min="0" step="0.01">
+                                    <div class="form-text">For profit calculation</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="productStock" class="form-label required">Stock Quantity</label>
+                                    <input type="number" class="form-control" id="productStock" min="0" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="productLowStock" class="form-label">Low Stock Alert</label>
+                                    <input type="number" class="form-control" id="productLowStock" min="0" value="5">
+                                </div>
+                            </div>
+
+                            <div class="feature-toggle">
+                                <div>
+                                    <label class="form-label">Track Quantity</label>
+                                    <div class="form-text">Enable inventory tracking</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="trackQuantity" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="feature-toggle">
+                                <div>
+                                    <label class="form-label">Continue Selling When Out of Stock</label>
+                                    <div class="form-text">Allow purchases even when inventory is 0</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="continueSelling">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Product Images Section -->
+                        <div class="form-section">
+                            <h3 class="section-title">Product Images</h3>
+
+                            <div class="image-upload-area" id="imageUploadArea">
+                                <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                <h5>Drag & Drop Images Here</h5>
+                                <p class="text-muted">or</p>
+                                <button type="button" class="btn btn-primary" id="browseImagesBtn">Browse Files</button>
+                                <input type="file" id="imageInput" multiple accept="image/*" style="display: none;">
+                                <p class="small text-muted mt-2">Supported formats: JPG, PNG, GIF. Max 5MB per image.</p>
+                            </div>
+
+                            <div class="image-preview-container" id="imagePreviewContainer">
+                                <!-- Image previews will be added here -->
+                            </div>
+                        </div>
+
+                        <!-- Product Variants Section -->
+                        <div class="form-section">
+                            <h3 class="section-title">Product Variants</h3>
+
+                            <div class="mb-3">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="hasVariants">
+                                    <label class="form-check-label" for="hasVariants">
+                                        This product has options like size or color
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="variantOptions" style="display: none;">
+                                <div class="mb-3">
+                                    <label class="form-label">Option Name (e.g., Size, Color)</label>
+                                    <input type="text" class="form-control" id="optionName" placeholder="Size">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Option Values</label>
+                                    <input type="text" class="form-control" id="optionValues" placeholder="Separate values with commas (e.g., Small, Medium, Large)">
+                                </div>
+
+                                <button type="button" class="btn btn-outline-primary mb-3" id="addOptionBtn">Add Another Option</button>
+
+                                <div id="variantsTable" style="display: none;">
+                                    <h5 class="mb-3">Variants</h5>
+                                    <div class="variant-row">
+                                        <div class="row">
+                                            <div class="col-md-4 mb-2">
+                                                <label class="form-label">Variant</label>
+                                                <input type="text" class="form-control" value="Small" readonly>
+                                            </div>
+                                            <div class="col-md-3 mb-2">
+                                                <label class="form-label">Price</label>
+                                                <input type="number" class="form-control" min="0" step="0.01">
+                                            </div>
+                                            <div class="col-md-3 mb-2">
+                                                <label class="form-label">Stock</label>
+                                                <input type="number" class="form-control" min="0">
+                                            </div>
+                                            <div class="col-md-2 mb-2">
+                                                <label class="form-label">SKU</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Specifications Section -->
+                        <div class="form-section">
+                            <h3 class="section-title">Product Specifications</h3>
+
+                            <div id="specificationsContainer">
+                                <div class="specification-row">
+                                    <input type="text" class="form-control" placeholder="Specification name (e.g., Material)">
+                                    <input type="text" class="form-control" placeholder="Specification value (e.g., Cotton)">
+                                    <button type="button" class="btn remove-spec-btn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-outline-primary" id="addSpecificationBtn">
+                                <i class="fas fa-plus me-1"></i> Add Specification
+                            </button>
+                        </div>
+
+                        <!-- Shipping & SEO Section -->
+                        <div class="form-section">
+                            <h3 class="section-title">Shipping & SEO</h3>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="productWeight" class="form-label">Weight (kg)</label>
+                                    <input type="number" class="form-control" id="productWeight" min="0" step="0.01">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="productDimensions" class="form-label">Dimensions (L×W×H in cm)</label>
+                                    <input type="text" class="form-control" id="productDimensions" placeholder="10×5×2">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="productSeoTitle" class="form-label">SEO Title</label>
+                                <input type="text" class="form-control" id="productSeoTitle">
+                                <div class="form-text">Optimize for search engines</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="productSeoDescription" class="form-label">SEO Description</label>
+                                <textarea class="form-control" id="productSeoDescription" rows="2"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="productSeoUrl" class="form-label">SEO URL Handle</label>
+                                <input type="text" class="form-control" id="productSeoUrl">
+                                <div class="form-text">Custom URL for the product page</div>
+                            </div>
+                        </div>
+
+                        <!-- Product Status Section -->
+                        <div class="form-section">
+                            <h3 class="section-title">Product Status</h3>
+
+                            <div class="mb-3">
+                                <label for="productStatus" class="form-label">Status</label>
+                                <select class="form-select" id="productStatus">
+                                    <option value="draft">Draft</option>
+                                    <option value="active" selected>Active</option>
+                                    <option value="archived">Archived</option>
+                                </select>
+                            </div>
+
+                            <div class="feature-toggle">
+                                <div>
+                                    <label class="form-label">Featured Product</label>
+                                    <div class="form-text">Show this product in featured sections</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="featuredProduct">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary">Save as Draft</button>
+                            <div>
+                                <button type="button" class="btn btn-outline-primary me-2">Preview</button>
+                                <button type="submit" class="btn btn-primary">Publish Product</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Preview Sidebar -->
+            <div class="col-lg-4">
+                <div class="preview-sidebar">
+                    <h4 class="mb-3">Product Preview</h4>
+
+                    <div class="preview-card">
+                        <div class="preview-image">
+                            <i class="fas fa-camera fa-2x"></i>
+                        </div>
+                        <div class="preview-body">
+                            <h5 id="previewName">Product Name</h5>
+                            <p id="previewPrice" class="text-muted">$0.00</p>
+                            <p id="previewDescription" class="small text-muted">Product description will appear here</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h6>Form Completion</h6>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">Complete all required fields for better product visibility</small>
+                    </div>
+
+                    <div class="mb-4">
+                        <h6>Quick Tips</h6>
+                        <ul class="small text-muted">
+                            <li>Use high-quality images for better conversions</li>
+                            <li>Write detailed product descriptions</li>
+                            <li>Set competitive pricing</li>
+                            <li>Add relevant tags for discoverability</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h6>Next Steps</h6>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary btn-sm">Set Up Inventory</button>
+                            <button class="btn btn-outline-primary btn-sm">Configure Shipping</button>
+                            <button class="btn btn-outline-primary btn-sm">Set Up Discounts</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">ShopName</h5>
+                    <p>Your one-stop shop for all your needs. Quality products at affordable prices.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="products.html" class="text-white text-decoration-none">Products</a></li>
+                        <li><a href="categories.html" class="text-white text-decoration-none">Categories</a></li>
+                        <li><a href="electronics.html" class="text-white text-decoration-none">Electronics</a></li>
+                        <li><a href="about.html" class="text-white text-decoration-none">About</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5 class="mb-3">Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Shipping Policy</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Returns & Refunds</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">FAQ</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Main St, City, Country</li>
+                        <li><i class="fas fa-phone me-2"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@shopname.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2023 ShopName. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image upload functionality
+            const imageUploadArea = document.getElementById('imageUploadArea');
+            const imageInput = document.getElementById('imageInput');
+            const browseImagesBtn = document.getElementById('browseImagesBtn');
+            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+
+            // Browse images button
+            browseImagesBtn.addEventListener('click', function() {
+                imageInput.click();
+            });
+
+            // File input change
+            imageInput.addEventListener('change', function(e) {
+                handleFiles(e.target.files);
+            });
+
+            // Drag and drop functionality
+            imageUploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                imageUploadArea.classList.add('dragover');
+            });
+
+            imageUploadArea.addEventListener('dragleave', function() {
+                imageUploadArea.classList.remove('dragover');
+            });
+
+            imageUploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                imageUploadArea.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            // Handle selected files
+            function handleFiles(files) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            const imagePreview = document.createElement('div');
+                            imagePreview.className = 'image-preview';
+
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+
+                            const removeBtn = document.createElement('button');
+                            removeBtn.className = 'remove-btn';
+                            removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                            removeBtn.addEventListener('click', function() {
+                                imagePreview.remove();
+                            });
+
+                            imagePreview.appendChild(img);
+                            imagePreview.appendChild(removeBtn);
+                            imagePreviewContainer.appendChild(imagePreview);
+                        };
+
+                        reader.readAsDataURL(file);
+                    }
+                }
+            }
+
+            // Product variants functionality
+            const hasVariantsCheckbox = document.getElementById('hasVariants');
+            const variantOptions = document.getElementById('variantOptions');
+            const variantsTable = document.getElementById('variantsTable');
+
+            hasVariantsCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    variantOptions.style.display = 'block';
+                } else {
+                    variantOptions.style.display = 'none';
+                    variantsTable.style.display = 'none';
+                }
+            });
+
+            // Add specification functionality
+            const addSpecificationBtn = document.getElementById('addSpecificationBtn');
+            const specificationsContainer = document.getElementById('specificationsContainer');
+
+            addSpecificationBtn.addEventListener('click', function() {
+                const specificationRow = document.createElement('div');
+                specificationRow.className = 'specification-row';
+
+                specificationRow.innerHTML = `
+                    <input type="text" class="form-control" placeholder="Specification name">
+                    <input type="text" class="form-control" placeholder="Specification value">
+                    <button type="button" class="btn remove-spec-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+                specificationsContainer.appendChild(specificationRow);
+
+                // Add event listener to the remove button
+                const removeBtn = specificationRow.querySelector('.remove-spec-btn');
+                removeBtn.addEventListener('click', function() {
+                    specificationRow.remove();
+                });
+            });
+
+            // Remove specification buttons (for initial ones)
+            const removeSpecBtns = document.querySelectorAll('.remove-spec-btn');
+            removeSpecBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.closest('.specification-row').remove();
+                });
+            });
+
+            // Form submission
+            const productForm = document.getElementById('productForm');
+            productForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Basic validation
+                const productName = document.getElementById('productName').value;
+                const productSku = document.getElementById('productSku').value;
+                const productPrice = document.getElementById('productPrice').value;
+
+                if (!productName || !productSku || !productPrice) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+
+                // In a real application, you would submit the form data to a server
+                alert('Product successfully added!');
+                // productForm.reset();
+            });
+
+            // Real-time preview updates
+            const productNameInput = document.getElementById('productName');
+            const productPriceInput = document.getElementById('productPrice');
+            const productDescriptionInput = document.getElementById('productDescription');
+            const previewName = document.getElementById('previewName');
+            const previewPrice = document.getElementById('previewPrice');
+            const previewDescription = document.getElementById('previewDescription');
+
+            productNameInput.addEventListener('input', function() {
+                previewName.textContent = this.value || 'Product Name';
+            });
+
+            productPriceInput.addEventListener('input', function() {
+                previewPrice.textContent = this.value ? `$${this.value}` : '$0.00';
+            });
+
+            productDescriptionInput.addEventListener('input', function() {
+                previewDescription.textContent = this.value || 'Product description will appear here';
+            });
+
+            // Category change updates subcategories
+            const productCategory = document.getElementById('productCategory');
+            const productSubcategory = document.getElementById('productSubcategory');
+
+            productCategory.addEventListener('change', function() {
+                // Clear existing options
+                productSubcategory.innerHTML = '<option value="" selected>Select a subcategory</option>';
+
+                // Add subcategories based on selected category
+                const subcategories = {
+                    electronics: ['Smartphones', 'Laptops', 'Tablets', 'Headphones', 'Smart Watches', 'Cameras'],
+                    fashion: ['Men\'s Clothing', 'Women\'s Clothing', 'Shoes', 'Accessories', 'Jewelry'],
+                    home: ['Furniture', 'Home Decor', 'Kitchen', 'Bed & Bath', 'Garden'],
+                    sports: ['Exercise Equipment', 'Outdoor Recreation', 'Team Sports', 'Water Sports'],
+                    beauty: ['Skincare', 'Makeup', 'Hair Care', 'Fragrances'],
+                    toys: ['Action Figures', 'Board Games', 'Educational Toys', 'Outdoor Toys']
+                };
+
+                const selectedCategory = this.value;
+                if (subcategories[selectedCategory]) {
+                    subcategories[selectedCategory].forEach(sub => {
+                        const option = document.createElement('option');
+                        option.value = sub.toLowerCase().replace(/\s+/g, '-');
+                        option.textContent = sub;
+                        productSubcategory.appendChild(option);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

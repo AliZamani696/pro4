@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Categories - ShopName</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link rel="stylesheet" href="/public/css/CategoryStyle.css">
+</head>
+<body>
+   <%- include("./Navbar") %>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="h2 mb-1">Product Categories</h1>
+                    <p class="text-muted mb-0">Browse our wide range of product categories</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-md-end mb-0">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Category Banner -->
+        <div class="category-banner text-center">
+            <h2 class="display-5 fw-bold mb-3">Explore Our Collections</h2>
+            <p class="lead mb-4">Find exactly what you're looking for in our carefully curated categories</p>
+            <a href="#categories" class="btn btn-light btn-lg">Browse All Categories</a>
+        </div>
+
+        <!-- Featured Categories -->
+        <section class="mb-5">
+            <h2 class="section-title">Featured Categories</h2>
+            <div class="row g-4">
+                <!-- Featured Category 1 -->
+                <div class="col-lg-6">
+                    <div class="card category-card featured-category">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="img-fluid rounded-start category-img h-100" alt="Electronics">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body d-flex flex-column h-100">
+                                    <div class="category-icon">
+                                        <i class="fas fa-laptop"></i>
+                                    </div>
+                                    <h3 class="card-title h4">Electronics</h3>
+                                    <p class="card-text flex-grow-1">Latest gadgets, smartphones, laptops, and cutting-edge technology.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="category-count">128 products</span>
+                                        <a href="#" class="btn btn-primary">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Category 2 -->
+                <div class="col-lg-6">
+                    <div class="card category-card featured-category">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="img-fluid rounded-start category-img h-100" alt="Fashion">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body d-flex flex-column h-100">
+                                    <div class="category-icon">
+                                        <i class="fas fa-tshirt"></i>
+                                    </div>
+                                    <h3 class="card-title h4">Fashion</h3>
+                                    <p class="card-text flex-grow-1">Trendy clothing, accessories, and footwear for every style.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="category-count">256 products</span>
+                                        <a href="#" class="btn btn-primary">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Categories -->
+        <section id="categories" class="mb-5">
+            <h2 class="section-title">All Categories</h2>
+            <div class="row g-4">
+                <!-- Category 1 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card category-card">
+                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top category-img" alt="Electronics">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="card-title h5">Electronics</h3>
+                                <p class="card-text mb-2">Latest gadgets and tech</p>
+                                <span class="category-count d-block mb-2">128 products</span>
+                                <a href="#" class="btn btn-sm btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card category-card">
+                        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top category-img" alt="Fashion">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="card-title h5">Fashion</h3>
+                                <p class="card-text mb-2">Clothing & accessories</p>
+                                <span class="category-count d-block mb-2">256 products</span>
+                                <a href="#" class="btn btn-sm btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card category-card">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top category-img" alt="Home & Garden">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="card-title h5">Home & Garden</h3>
+                                <p class="card-text mb-2">Furniture & decor</p>
+                                <span class="category-count d-block mb-2">187 products</span>
+                                <a href="#" class="btn btn-sm btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card category-card">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top category-img" alt="Sports">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="card-title h5">Sports</h3>
+                                <p class="card-text mb-2">Equipment & gear</p>
+                                <span class="category-count d-block mb-2">142 products</span>
+                                <a href="#" class="btn btn-sm btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 5 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card category-card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top category-img" alt="Beauty">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="card-title h5">Beauty</h3>
+                                <p class="card-text mb-2">Skincare & cosmetics</p>
+                                <span class="category-count d-block mb-2">98 products</span>
+                                <a href="#" class="btn btn-sm btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 6 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card category-card">
+                        <img src="https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top category-img" alt="Toys">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="card-title h5">Toys & Games</h3>
+                                <p class="card-text mb-2">Fun for all ages</p>
+                                <span class="category-count d-block mb-2">76 products</span>
+                                <a href="#" class="btn btn-sm btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 7 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card category-card">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top category-img" alt="Books">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="card-title h5">Books</h3>
+                                <p class="card-text mb-2">Fiction & non-fiction</p>
+                                <span class="category-count d-block mb-2">210 products</span>
+                                <a href="#" class="btn btn-sm btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 8 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card category-card">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top category-img" alt="Automotive">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="card-title h5">Automotive</h3>
+                                <p class="card-text mb-2">Car accessories & parts</p>
+                                <span class="category-count d-block mb-2">64 products</span>
+                                <a href="#" class="btn btn-sm btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subcategories Section -->
+        <section class="mb-5">
+            <h2 class="section-title">Popular Subcategories</h2>
+            <div class="row g-3">
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 bg-light">
+                        <div class="card-body text-center py-4">
+                            <i class="fas fa-mobile-alt fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">Smartphones</h5>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 bg-light">
+                        <div class="card-body text-center py-4">
+                            <i class="fas fa-laptop fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">Laptops</h5>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 bg-light">
+                        <div class="card-body text-center py-4">
+                            <i class="fas fa-tv fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">TV & Audio</h5>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 bg-light">
+                        <div class="card-body text-center py-4">
+                            <i class="fas fa-camera fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">Cameras</h5>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 bg-light">
+                        <div class="card-body text-center py-4">
+                            <i class="fas fa-tshirt fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">Men's Fashion</h5>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 bg-light">
+                        <div class="card-body text-center py-4">
+                            <i class="fas fa-female fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">Women's Fashion</h5>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 bg-light">
+                        <div class="card-body text-center py-4">
+                            <i class="fas fa-child fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">Kids' Fashion</h5>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 bg-light">
+                        <div class="card-body text-center py-4">
+                            <i class="fas fa-gem fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">Jewelry</h5>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">ShopName</h5>
+                    <p>Your one-stop shop for all your needs. Quality products at affordable prices.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="products.html" class="text-white text-decoration-none">Products</a></li>
+                        <li><a href="categories.html" class="text-white text-decoration-none">Categories</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">About Us</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5 class="mb-3">Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Shipping Policy</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Returns & Refunds</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">FAQ</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Main St, City, Country</li>
+                        <li><i class="fas fa-phone me-2"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@shopname.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2023 ShopName. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
