@@ -3,12 +3,10 @@ const express = require("express");
 
 const router = express.Router();
 router.use((req, res, next) => {
-        res.locals.req = req;
-        res.locals.path = req.path;
+        res.locals.path = req.path
         next();
 });
 router.get("/",(req,res)=>{
-
         res.render("index");
 });
 router.get("/AllProducts",(req,res)=>{
@@ -47,11 +45,5 @@ router.use((req, res, next) => {
 });
 
 // Global error handler
-router.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    error: "Internal Server Error",
-    message: err.message,
-  });
-});
+
 module.exports = router;
