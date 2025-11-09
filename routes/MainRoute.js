@@ -2,8 +2,12 @@ const express = require("express");
 
 
 const router = express.Router();
+
 router.use((req, res, next) => {
-        res.locals.path = req.path
+        res.locals= {
+                path:req.path,
+        }
+
         next();
 });
 router.get("/",(req,res)=>{
@@ -43,7 +47,4 @@ router.use((req, res, next) => {
     message: `The requested URL ${req.originalUrl} was not found on this server.`,
   });
 });
-
-// Global error handler
-
 module.exports = router;
