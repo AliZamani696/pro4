@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../public/css/IndexCss.css">
 </head>
 <body>
+    <%= req.url  %>
     <!-- Navigation -->
    <%- include("./Navbar") %>
     <!-- Hero Section -->
@@ -33,7 +34,7 @@
                             <i class="fas fa-laptop fa-3x text-primary mb-3"></i>
                             <h5 class="card-title">Electronics</h5>
                             <p class="card-text">Latest gadgets and tech</p>
-                            <button type="submit" href="/Electro" name="category" value="Electronics"  class="btn btn-outline-primary">Browse</button>
+                            <button type="submit"  name="category" value="Electronics"  class="btn btn-outline-primary">Browse</button>
                         </div>
                     </div>
                 </div>

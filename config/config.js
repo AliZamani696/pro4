@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const port = 8090;
+const port = 9090;
 const connectDB = ()=>{
         mongoose.connect("mongodb://localhost:27017/ShopHub",{})
         .then(() => console.log("✅ MongoDB Connected"))
