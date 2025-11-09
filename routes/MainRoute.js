@@ -38,6 +38,9 @@ router.get("/UserInfo",(req,res)=>{
 router.get("/AddProducts",(req,res)=>{
         res.render("AddProduct")
 });
+router.post("/AddProduct",(req,res)=>{
+        console.log(req.body)
+});
 router.get("/Category",(req,res)=>{
         console.log(req.query.data)
 });
