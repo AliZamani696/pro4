@@ -1,5 +1,6 @@
 const express = require("express");
-
+const validateProduct  = require("../validators/ProductValidators");
+const handleValidationErrors = require('../middleware/validationErrorHandler');
 
 const router = express.Router();
 
@@ -38,7 +39,10 @@ router.get("/AddProducts",(req,res)=>{
         res.render("AddProduct")
 });
 const ProductModel =require("./../models/ProductsModel")
-router.post("/AddProduct",async(req,res)=>{
+router.post("/AddProduct",
+        validateProduct,
+        handleValidationErrors,
+        async(req,res)=>{
         const{
                 productName,
                 SKU,

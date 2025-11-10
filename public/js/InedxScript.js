@@ -1,7 +1,6 @@
 
-document.getElementById("btn").addEventListener("click",async (e)=>{
+document.getElementById("btnSearchBar").addEventListener("click",async (e)=>{
         let searchBarValue = document.getElementById("searchBar").value;
- const {port} = require("./../../config/config");
         try{
                 await fetch(`http://localhost:9090/searchBar`,{
                 method:"POST",
@@ -25,5 +24,6 @@ buttons.forEach(btn => {
     console.log("Button value:", btnValue);
   });
 });
+
 
 
