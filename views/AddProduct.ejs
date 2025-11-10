@@ -279,53 +279,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-store me-2"></i>ShopName
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="categories.html">Categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="electronics.html">Electronics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    <a href="#" class="btn btn-outline-primary me-2">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <a href="profile.html" class="btn btn-outline-primary me-2">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <a href="cart.html" class="btn btn-outline-primary position-relative">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            3
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
+   <%- include("./Navbar") %>
 
 
     <!-- Main Content -->
@@ -338,23 +292,20 @@
                         <!-- Basic Information Section -->
                         <div class="form-section">
                             <h3 class="section-title">Basic Information</h3>
-
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="productName" class="form-label required">Product Name</label>
-                                    <input type="text" class="form-control" id="productName" required>
+                                    <input type="text" class="form-control" id="productName"name="productName" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="productSku" class="form-label required">SKU</label>
-                                    <input type="text" class="form-control" id="productSku" required>
+                                    <input type="text" class="form-control" name="SKU" id="productSku" required>
                                 </div>
                             </div>
-
                             <div class="mb-3">
                                 <label for="productDescription" class="form-label required">Product Description</label>
                                 <textarea class="form-control" id="Description" rows="4" required name="productDescription"></textarea>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="productCategory" class="form-label required">Category</label>
@@ -372,6 +323,12 @@
                                     <label for="productSubcategory" class="form-label">Subcategory</label>
                                     <select class="form-select" id="productSubcategory" name="subcategory">
                                         <option value="" selected>Select a subcategory</option>
+                                          <option value="electronics">Electronics</option>
+                                        <option value="fashion">Fashion</option>
+                                        <option value="home">Home & Garden</option>
+                                        <option value="sports">Sports</option>
+                                        <option value="beauty">Beauty</option>
+                                        <option value="toys">Toys & Games</option>
                                     </select>
                                 </div>
                             </div>
@@ -452,8 +409,8 @@
                             </div>
                         </div>
 
-                        <!-- Product Variants Section -->
-                        <div class="form-section">
+
+                       <div class="form-section">
                             <h3 class="section-title">Product Variants</h3>
 
                             <div class="mb-3">
@@ -468,14 +425,13 @@
                             <div id="variantOptions" style="display: none;">
                                 <div class="mb-3">
                                     <label class="form-label">Option Name (e.g., Size, Color)</label>
-                                    <input name="variantOptions" type="text" class="form-control" id="optionName" placeholder="Size">
+                                    <input name="variantOptions" type="text" class="form-control" id="optionName" placeholder="Size or Color ...">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Option Values</label>
-                                    <input name="optionValues" type="text" class="form-control" id="optionValues" placeholder="Separate values with commas (e.g., Small, Medium, Large)">
+                                    <input  name="optionValuesSize" type="text" class="form-control" id="optionValues" placeholder="Separate values with commas (e.g., Small, Medium, Large)">
                                 </div>
-
                                 <button type="button" class="btn btn-outline-primary mb-3" id="addOptionBtn">Add Another Option</button>
                             </div>
                         </div>
@@ -621,6 +577,18 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    let showOptions = document.getElementById("hasVariants")
+    showOptions.addEventListener("change",()=>{
+        if(showOptions.checked){
+             document.getElementById("variantOptions").style.display ="block";
+        }else{
+            document.getElementById("variantOptions").style.display ="none"
+        }
+    })
+
+
+    </script>
 <!--
     <script>
         document.addEventListener('DOMContentLoaded', function() {

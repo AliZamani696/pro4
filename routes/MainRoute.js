@@ -7,7 +7,6 @@ router.use((req, res, next) => {
         res.locals= {
                 path:req.path,
         }
-
         next();
 });
 router.get("/",(req,res)=>{
@@ -38,9 +37,46 @@ router.get("/UserInfo",(req,res)=>{
 router.get("/AddProducts",(req,res)=>{
         res.render("AddProduct")
 });
-router.post("/AddProduct",(req,res)=>{
-        console.log(req.body)
-});
+const ProductModel =require("./../models/ProductsModel")
+router.post("/AddProduct",async(req,res)=>{
+        const{
+                productName,
+                SKU,
+                productDescription,
+                Category,
+                subcategory,
+                Brand,
+                Tags,
+                Price,
+                ComparePrice,
+                Cost,
+                Stock,
+                lowStock,
+                Status
+        } = req.body
+
+        const newproduct = new ProductModel({
+                productName,
+                SKU,
+                productDescription,
+                Category,
+                subcategory,
+                Brand,
+                Tags,
+                Price,
+                ComparePrice,
+                Cost,
+                Stock,
+                lowStock,
+                Status
+})
+let status = await newproduct.save()
+if (status){
+        res.redirect("/")
+}
+console.log(req.body)
+
+})
 router.get("/Category",(req,res)=>{
         console.log(req.query.data)
 });
